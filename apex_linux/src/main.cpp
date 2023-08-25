@@ -39,29 +39,29 @@ float maxdistance = 50.0f;			 	// aim assist maximum range in meters
 
 
 
-int m_iHealth = 0x043c; 					//RecvTable.DT_Player.m_iHealth
-int m_iTeamNum = 0x044c; 					//RecvTable.DT_BaseEntity.m_iTeamNum
-int m_iViewAngles = 0x25a4 - 0x14; 			//m_ammoPoolCapacity - 0x14
+int m_iHealth = 0x0470; 					//RecvTable.DT_Player.m_iHealth
+int m_iTeamNum = 0x0480; 					//RecvTable.DT_BaseEntity.m_iTeamNum
+int m_iViewAngles = (0x25e4 - 0x14); 			//m_ammoPoolCapacity - 0x14
 int m_iCameraAngles = 0x1c60 + 0x2EC; 		//m_zoomFullStartTime + 0x2EC
-int m_bZooming = 0x1c51; 					//m_bZooming
-int m_iBoneMatrix = 0x0e98 + 0x50 - 0x8; 	//m_nForceBone + 0x50 - 0x8
-int m_iWeapon = 0x1a14; 					//m_latestPrimaryWeapons
-int m_vecAbsOrigin = 0x014c; 				//DataMap.CBaseViewModel.m_vecAbsOrigin
-int m_playerData = 0x16b8; 					//RecvTable.DT_WeaponX.m_playerData
-int m_lifeState = 0x0798; 					//RecvTable.DT_Player.m_lifeState
-int m_itemId = 0x1648; 						//RecvTable.DT_PropSurvival.m_customScriptInt
-int m_gameMode = 0x01f16710; 				//mp_gamemode
-int m_localplayer = 0x01edd7e0 + 0x8;
-int m_sensitivity = 0x01eca0e0; 			//mouse_sensitivity
-int m_bulletSpeed = 0x1ef0; 				//CWeaponX!m_flProjectileSpeed
-int m_bulletGravity = m_bulletSpeed + 0x8; 	//CWeaponX!m_flProjectileSpeed + 0x8
-int m_muzzle = 0x1f48; 						//CPlayer!camera_origin
+int m_bZooming = 0x1c81; 					//m_bZooming
+int m_iBoneMatrix = 0x0ec8 + 0x48; 	//m_nForceBone + 0x50 - 0x8
+int m_iWeapon = 0x1a44; 					//m_latestPrimaryWeapons
+int m_vecAbsOrigin = 0x017c; 				//DataMap.CBaseViewModel.m_vecAbsOrigin
+int m_playerData = 0x16e0; 					//RecvTable.DT_WeaponX.m_playerData
+int m_lifeState = 0x07d0; 					//RecvTable.DT_Player.m_lifeState
+int m_itemId = 0x1668; 						//RecvTable.DT_PropSurvival.m_customScriptInt
+int m_gameMode = 0x0225d440; 				//mp_gamemode
+int m_localplayer = 0x22245c8;
+int m_sensitivity = 0x022106f0; 			//mouse_sensitivity
+int m_bulletSpeed = 0x1aa0 + 0x04cc; 				//CWeaponX!m_flProjectileSpeed
+int m_bulletGravity = m_bulletSpeed + 0x1aa0 + 0x04d4; 	//CWeaponX!m_flProjectileSpeed + 0x8
+int m_muzzle = 0x1f80; 						//CPlayer!camera_origin
 
 
 
 
-#define in_Attack 0x076687d8
-#define m_bleedoutState 0x2738
+#define in_Attack 0x07472e98 + 0x8
+#define m_bleedoutState 0x2790
 
 
 
@@ -144,7 +144,7 @@ QWORD GetApexBaseAddress(int pid)
 			break;
 		}
 	}
-
+LAST_VISIBLE_TIME
 	rx_close_handle(snapshot);
 
 	return base;
