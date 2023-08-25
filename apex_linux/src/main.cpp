@@ -1,3 +1,4 @@
+ 
 /*
  * tested on ubuntu 22.04.1 LTS and linux mint 21
  */
@@ -285,7 +286,7 @@ int main(void)
 		char pattern[] = "\x4C\x8B\x15\x00\x00\x00\x00\x33\xF6";
 		char mask[] = "xxx????xx";
 
-		// IClientEntityList = 0x1a203b8 + base_module + 0x280050;
+		// IClientEntityList = 0x1e74448 + base_module + 0x280050;
 		IClientEntityList = rx_scan_pattern(base_module_dump, pattern, mask, 9);
 		if (IClientEntityList)
 		{
@@ -336,7 +337,7 @@ int main(void)
 		}
 	}
 
-	
+
 
 	{
 		// 48 8B CE  ? ? ? ? ? 84 C0 0F 84 BA 00 00 00
@@ -347,7 +348,7 @@ int main(void)
 		{
 			vis_time = vis_time + 0x10;
 			dwVisibleTime = rx_read_i32(r5apex, vis_time + 0x4);
-			// dwVisibleTime = 0x1a48;
+			// dwVisibleTime = 0x1aa0;
 		}
 	}
 
@@ -369,12 +370,12 @@ int main(void)
 			m_iCameraAngles = dump_table(r5apex, recv_table, "m_zoomFullStartTime") + 0x2EC;
 		}
 
-		
+
 
 		if (!strcmp(name, "DT_BaseEntity"))
 		{
 			m_iTeamNum = dump_table(r5apex, recv_table, "m_iTeamNum");
-			
+
 		}
 
 		if (!strcmp(name, "DT_BaseCombatCharacter"))
@@ -452,13 +453,13 @@ int main(void)
 		float fovHipfire = AIMFOV_HIPFIRE;
 		itemWorkaround++;
 		//printf("TESTEEEE -- %i",itemWorkaround);
-		
+
 		if (!rx_process_exists(r5apex))
 		{
 			break;
 		}
 
-		uint64_t gameModePtr = rx_read_i32(r5apex, base_module + 0x01e87f30 + 0x58);
+		uint64_t gameModePtr = rx_read_i32(r5apex, base_module + 0x0225d440 + 0x58);
 		int gameMode = rx_read_int(r5apex, gameModePtr);
 		// printf("\r[+] Game Mode Int: %d", gameMode);
 		// fflush(stdout);
@@ -472,7 +473,7 @@ int main(void)
 			continue;
 		}
 
-		
+
 
 		DWORD local_team = rx_read_i32(r5apex, localplayer + m_iTeamNum);
 
@@ -528,7 +529,7 @@ int main(void)
 
 			if (entity == localplayer)
 				continue;
-			
+
 
 			if (rx_read_i32(r5apex, entity + m_iHealth) == 0)
 			{
@@ -558,7 +559,7 @@ int main(void)
 			}
 
 			vec3 head = GetBonePosition(r5apex, entity, 2);
-			
+
 
 			vec3 velocity;
 			rx_read_process(r5apex, entity + m_vecAbsOrigin - 0xC, &velocity, sizeof(vec3));
@@ -689,13 +690,13 @@ int main(void)
 		{
 
 
-			
+
 			if (rx_read_i32(r5apex, target_entity + m_iHealth) == 0)
 				continue;
 			if (rx_read_i32(r5apex, target_entity + m_bleedoutState) > 0) // ignore knock
 				continue;
-			
-		
+
+
 			vec3 enmPos;
 
 			rx_read_process(r5apex, localplayer + m_vecAbsOrigin, &local_position, sizeof(vec3));
@@ -843,7 +844,7 @@ int main(void)
 			itemWorkaround = 0;
 		}
 
-		
+
 
 		//item glow
 		if (itemWorkaround == 5000 && ITEM_ESP == 1)
@@ -906,7 +907,7 @@ int main(void)
 				case 182: //Knockdown Shield 4
 				case 163: //Shield Battery
 				case 235: //Skullpiercer
-				
+
 					rx_write_i32(r5apex, entity + 0x02c0, 1363184265);
 					break;
 				}
@@ -920,8 +921,8 @@ int main(void)
                     rx_write_float(r5apex, entity + 0x1D0, 61.f);
                     rx_write_float(r5apex, entity + 0x1D4, 2.f);
                     rx_write_float(r5apex, entity + 0x1D8, 2.f);
- 
- 
+
+
                 }
 
 
